@@ -17,6 +17,9 @@ resource "docker_container" "nginx" {
   count = 4
   image = docker_image.nginx.latest
   name  = "nginx-${random_pet.nginx.id}-${count.index}"
+  provider "docker" {
+  host    = "npipe:////.//pipe//docker_engine"
+}
 
   ports {
     internal = 80
